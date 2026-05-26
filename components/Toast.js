@@ -8,6 +8,7 @@ const STYLES = {
   success:     { bg: "#059669",         border: "#34d399",               icon: "✅" },
   error:       { bg: "#dc2626",         border: "#f87171",               icon: "❌" },
   info:        { bg: "var(--surface)",  border: "var(--border)",         icon: "ℹ️" },
+  penalty:     { bg: "#b45309",         border: "#f59e0b",               icon: "⬇️" },
 };
 
 export default function ToastContainer() {

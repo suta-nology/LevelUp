@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 import { TRANSLATIONS } from "@/lib/i18n";
 import {
   getLevel, getXPProgress, calcStreak,
-  checkNewAchievements, ACHIEVEMENTS, XP,
+  checkNewAchievements, ACHIEVEMENTS, XP, PENALTY,
 } from "@/lib/gameSystem";
 
 const AppContext = createContext(null);
@@ -111,6 +111,49 @@ export function AppProvider({ children }) {
     });
   }
 
+  /* ── Subtract XP (penalty) ── */
+  function subtractXP(amount, reason) {
+    setXP(prev => {
+      const newXP = Math.max(0, prev - amount);
+      const uid   = localStorage.getItem("lu_user") || "guest";
+      localStorage.setItem(`lu_xp_${uid}`, newXP.toString());
+      addToast(`-${amount} XP — ${reason}`, "penalty");
+      return newXP;
+    });
+  }
+
+  /* ── Daily penalty check (runs once per day after init) ── */
+  useEffect(() => {
+    if (!initialized) return;
+
+    const uid = localStorage.getItem("lu_user") || "guest";
+    if (uid === "guest") return;
+
+    const today     = new Date().toISOString().slice(0, 10);
+    const lastCheck = localStorage.getItem(`lu_penalty_check_${uid}`);
+    if (lastCheck === today) return;
+
+    localStorage.setItem(`lu_penalty_check_${uid}`, today);
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yDate = yesterday.toISOString().slice(0, 10);
+
+    const habitsRaw  = localStorage.getItem(`lu_habits_${uid}`);
+    if (!habitsRaw) return;
+    const habitsData = JSON.parse(habitsRaw);
+    if (!Object.keys(habitsData).length) return;
+
+    const HABIT_IDS    = ["gym", "study", "water", "coding", "read", "sleep"];
+    const doneYesterday = HABIT_IDS.filter(id => habitsData[`${id}_${yDate}`]).length;
+
+    if (doneYesterday === 0) {
+      setTimeout(() => subtractXP(PENALTY.MISSED_DAY, TRANSLATIONS[lang]?.penaltyMissedDay || "Skipped all habits yesterday"), 1500);
+    } else if (doneYesterday < 3) {
+      setTimeout(() => subtractXP(PENALTY.LOW_HABITS, TRANSLATIONS[lang]?.penaltyLowHabits || "Low habit completion yesterday"), 1500);
+    }
+  }, [initialized]); // eslint-disable-line react-hooks/exhaustive-deps
+
   /* ── Unlock achievement ── */
   function unlockAchievement(achievementId, name, icon) {
     if (unlocked.includes(achievementId)) return;
@@ -152,7 +195,7 @@ export function AppProvider({ children }) {
       lang, changeLang, t,
       theme, toggleTheme,
       xp, level, xpInfo,
-      addXP,
+      addXP, subtractXP,
       unlocked, checkAchievements,
       toasts, addToast, removeToast,
       requestNotifications, sendNotification,
