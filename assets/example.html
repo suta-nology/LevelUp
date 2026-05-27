@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Habit Forge — Asset Example</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon-180.png" />
+  <link rel="manifest" href="./favicon/site.webmanifest" />
+
+  <!-- Brand tokens -->
+  <link rel="stylesheet" href="./tokens/colors.css" />
+  <link rel="stylesheet" href="./tokens/typography.css" />
+  <link rel="stylesheet" href="./tokens/backgrounds.css" />
+
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--hf-font-body);color:var(--hf-ink-100);background:var(--hf-ink-900)}
+    .page{min-height:100vh;display:flex;flex-direction:column}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid var(--hf-ink-600)}
+    header img{display:block}
+    .nav{display:flex;gap:18px;color:var(--hf-ink-200);font-size:14px}
+    .hero{flex:1;display:flex;align-items:center;padding:80px 32px}
+    .hero .inner{max-width:720px}
+    .hero h1{font-family:var(--hf-font-display);font-size:64px;font-weight:800;letter-spacing:-.035em;line-height:1;margin:0 0 20px}
+    .hero h1 .accent{color:var(--hf-ember-500)}
+    .hero p{color:var(--hf-ink-200);font-size:18px;line-height:1.5;margin:0 0 28px}
+    .btn{padding:12px 22px;border-radius:var(--hf-r-md);background:var(--hf-indigo-500);color:#fff;border:none;font-weight:600;cursor:pointer;font-size:15px}
+    .btn:hover{background:var(--hf-indigo-400)}
+    .icons-strip{display:flex;gap:18px;padding:24px 32px;border-top:1px solid var(--hf-ink-600);background:var(--hf-ink-800)}
+    .icons-strip .item{display:flex;align-items:center;gap:8px;color:var(--hf-ink-200);font-size:13px}
+    .icons-strip img{width:20px;height:20px;filter:invert(72%) sepia(13%) saturate(2300%) hue-rotate(213deg) brightness(99%) contrast(92%)}
+  </style>
+</head>
+<body>
+  <div class="page hf-bg-spark-field">
+
+    <header>
+      <img src="./logo/logo-horizontal-dark.svg" alt="Habit Forge" height="48" />
+      <nav class="nav">
+        <a href="#" style="color:inherit;text-decoration:none">Beranda</a>
+        <a href="#" style="color:inherit;text-decoration:none">Kebiasaan</a>
+        <a href="#" style="color:inherit;text-decoration:none">Statistik</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="inner">
+        <h1>Tempa kebiasaan,<br/><span class="accent">satu pukulan sehari.</span></h1>
+        <p>Habit Forge membantumu membangun ritme harian — pelan, terukur, dan konsisten. Cocok untuk yang sedang menempa dirinya.</p>
+        <button class="btn">Mulai sekarang</button>
+      </div>
+    </section>
+
+    <div class="icons-strip">
+      <div class="item"><img src="./icons/beranda.svg" alt=""/> Beranda</div>
+      <div class="item"><img src="./icons/daftar-tugas.svg" alt=""/> Daftar Tugas</div>
+      <div class="item"><img src="./icons/kebiasaan.svg" alt=""/> Kebiasaan</div>
+      <div class="item"><img src="./icons/kalender.svg" alt=""/> Kalender</div>
+      <div class="item"><img src="./icons/statistik.svg" alt=""/> Statistik</div>
+      <div class="item"><img src="./icons/pencapaian.svg" alt=""/> Pencapaian</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="96" viewBox="0 0 420 96">
+  <g transform="translate(8,16)">
+    <rect x="2" y="2" width="60" height="60" rx="14" fill="#1a1f2e"></rect>
+    
+  <g fill="#fff">
+    <rect x="14" y="22" width="36" height="9" rx="2"></rect>
+    <path d="M14 22 Q8 22 8 28 L14 28 Z"></path>
+    <rect x="22" y="31" width="20" height="4"></rect>
+    <rect x="16" y="35" width="32" height="9" rx="2"></rect>
+  </g>
+  <circle cx="46" cy="18" r="2.2" fill="#d99767"></circle>
+  </g>
+  <g font-family="Sora, Inter, system-ui, sans-serif" font-weight="700" font-size="38" letter-spacing="-0.5">
+    <text x="94" y="62" fill="#1a1f2e">Habit</text>
+    <text x="200" y="62" fill="#c9824a">Forge</text>
+  </g>
+</svg>

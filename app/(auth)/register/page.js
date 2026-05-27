@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { createUserWithEmailAndPassword, updateProfile, signInWithPopup } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db, googleProvider } from "@/lib/firebase";
@@ -65,38 +66,32 @@ export default function RegisterPage() {
   }
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      padding: "24px 16px",
-      background: "radial-gradient(ellipse at 30% 20%, rgba(124,106,240,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(167,139,250,0.1) 0%, transparent 50%), var(--bg)",
-    }}>
-      <div className="w-full anim-scale-in" style={{ maxWidth: 380 }}>
+    <div className="hf-bg-forge-grid" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px 16px" }}>
+      <div className="w-full anim-scale-in" style={{ maxWidth: 400, position: "relative", zIndex: 1 }}>
 
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{
-            width: 64, height: 64,
-            background: "linear-gradient(135deg, var(--accent), var(--accent-lt))",
-            borderRadius: 20, display: "flex", alignItems: "center",
-            justifyContent: "center", fontSize: 28, margin: "0 auto 16px",
-            boxShadow: "0 8px 32px var(--accent-glow)",
-          }}>⚡</div>
-          <h1 style={{ fontWeight: 900, fontSize: 28, color: "var(--text)", letterSpacing: "-0.5px" }}>
-            Habit Forge
-          </h1>
-          <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
+        {/* Logo */}
+        <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <Image
+            src="/logo/logo-stacked-dark.svg"
+            alt="Habit Forge"
+            width={160}
+            height={80}
+            style={{ margin: "0 auto", display: "block" }}
+            priority
+          />
+          <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 10 }}>
             Start your journey today.
           </p>
         </div>
 
-        <div className="card">
-          <h2 style={{ fontWeight: 800, fontSize: 18, color: "var(--text)", marginBottom: 20 }}>
+        <div className="card" style={{ borderColor: "var(--border)", backdropFilter: "blur(12px)" }}>
+          <h2 style={{ fontWeight: 700, fontSize: 18, color: "var(--text)", marginBottom: 20 }}>
             Create Account
           </h2>
 
           {error && (
             <div style={{
-              background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)",
+              background: "rgba(217,100,106,0.1)", border: "1px solid rgba(217,100,106,0.3)",
               borderRadius: 12, padding: "10px 14px",
               color: "var(--danger)", fontSize: 13, marginBottom: 16,
             }}>
@@ -104,20 +99,15 @@ export default function RegisterPage() {
             </div>
           )}
 
-          {/* Google Sign-Up */}
-          <button
-            type="button"
-            onClick={handleGoogle}
-            disabled={loading}
-            style={{
-              width: "100%", padding: "11px 16px",
-              background: "var(--surface)", border: "1px solid var(--border)",
-              borderRadius: 12, cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-              fontSize: 14, fontWeight: 600, color: "var(--text)",
-              transition: "border-color 0.2s",
-              marginBottom: 16,
-            }}
+          {/* Google */}
+          <button type="button" onClick={handleGoogle} disabled={loading} style={{
+            width: "100%", padding: "11px 16px",
+            background: "var(--surface)", border: "1px solid var(--border)",
+            borderRadius: 12, cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+            fontSize: 14, fontWeight: 600, color: "var(--text)",
+            transition: "border-color 0.2s", marginBottom: 16, fontFamily: "inherit",
+          }}
             onMouseEnter={e => e.currentTarget.style.borderColor = "var(--border-hover)"}
             onMouseLeave={e => e.currentTarget.style.borderColor = "var(--border)"}
           >
@@ -130,10 +120,7 @@ export default function RegisterPage() {
             Continue with Google
           </button>
 
-          {/* Divider */}
-          <div style={{
-            display: "flex", alignItems: "center", gap: 12, marginBottom: 16,
-          }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
             <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
             <span style={{ fontSize: 12, color: "var(--muted)", fontWeight: 500 }}>or</span>
             <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
@@ -160,21 +147,22 @@ export default function RegisterPage() {
               <input className="input" type="password" placeholder="Repeat password"
                      value={confirm} onChange={e => setConfirm(e.target.value)} />
             </div>
-            <button type="submit" disabled={loading} className="btn-primary w-full"
-                    style={{ marginTop: 4 }}>
+            <button type="submit" disabled={loading} className="btn-primary w-full" style={{ marginTop: 4 }}>
               {loading ? "Creating account…" : "Create Account"}
             </button>
           </form>
 
           <p style={{ textAlign: "center", fontSize: 13, color: "var(--muted)", marginTop: 18 }}>
             Already have an account?{" "}
-            <Link href="/login"
-                  style={{ color: "var(--accent-lt)", fontWeight: 700, textDecoration: "none" }}>
+            <Link href="/login" style={{ color: "var(--ember-lt)", fontWeight: 700, textDecoration: "none" }}>
               Sign In →
             </Link>
           </p>
         </div>
 
+        <p style={{ textAlign: "center", fontSize: 11, color: "var(--muted)", marginTop: 24, opacity: 0.6 }}>
+          © 2026 Sutanology · Habit Forge
+        </p>
       </div>
     </div>
   );

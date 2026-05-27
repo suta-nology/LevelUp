@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <title>Habit Forge — Grid Tile</title>
+  <rect width="40" height="40" fill="#0B0F1A"></rect>
+  <path d="M40 0 L0 0 0 40" stroke="#6B6DDF" stroke-opacity="0.08" fill="none" stroke-width="1"></path>
+</svg>

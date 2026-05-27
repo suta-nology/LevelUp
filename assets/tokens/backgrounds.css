@@ -1,0 +1,35 @@
+/* ===========================================================
+   Habit Forge — Background Patterns (CSS)
+   Drop these on any container; combine with --hf-ink-900 base.
+   =========================================================== */
+
+.hf-bg-forge-grid {
+  background-color: #0b0f1a;
+  background-image:
+    linear-gradient(rgba(107,109,223,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107,109,223,.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  position: relative;
+}
+.hf-bg-forge-grid::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(201,130,74,.12), transparent 70%);
+}
+
+.hf-bg-spark-field {
+  background-color: #0b0f1a;
+  background-image:
+    radial-gradient(800px 500px at 75% 0%, rgba(107,109,223,.20), transparent 60%),
+    radial-gradient(600px 400px at 20% 100%, rgba(201,130,74,.12), transparent 60%),
+    radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.4px);
+  background-size: auto, auto, 14px 14px;
+}
+
+.hf-bg-atmosphere {
+  background-color: #0b0f1a;
+  background-image:
+    radial-gradient(60% 80% at 0% 0%, rgba(107,109,223,.22), transparent 60%),
+    radial-gradient(50% 60% at 100% 0%, rgba(86,88,200,.18), transparent 60%),
+    radial-gradient(50% 50% at 50% 100%, rgba(201,130,74,.12), transparent 60%);
+}

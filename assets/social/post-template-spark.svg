@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <radialGradient id="sp1" cx=".75" cy=".1"><stop offset="0" stop-color="#6b6ddf" stop-opacity=".35"></stop><stop offset="1" stop-color="#6b6ddf" stop-opacity="0"></stop></radialGradient>
+    <radialGradient id="sp2" cx=".2" cy="1"><stop offset="0" stop-color="#c9824a" stop-opacity=".25"></stop><stop offset="1" stop-color="#c9824a" stop-opacity="0"></stop></radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="#0b0f1a"></rect>
+  <rect width="1080" height="1080" fill="url(#sp1)"></rect>
+  <rect width="1080" height="1080" fill="url(#sp2)"></rect>
+  <g transform="translate(490 380) scale(2)">
+    <rect x="0" y="0" width="100" height="100" rx="22" fill="#6b6ddf"></rect>
+    <g transform="translate(18 18) scale(1.05)">
+  <g fill="#fff">
+    <rect x="14" y="22" width="36" height="9" rx="2"></rect>
+    <path d="M14 22 Q8 22 8 28 L14 28 Z"></path>
+    <rect x="22" y="31" width="20" height="4"></rect>
+    <rect x="16" y="35" width="32" height="9" rx="2"></rect>
+  </g>
+  <circle cx="46" cy="18" r="2.2" fill="#d99767"></circle></g>
+  </g>
+  <g font-family="Sora, sans-serif" fill="#e6e9f5">
+    <text x="540" y="720" font-size="64" font-weight="700" text-anchor="middle" letter-spacing="-1">Habit Forge</text>
+    <text x="540" y="780" font-size="28" font-weight="400" fill="#a8a9ef" text-anchor="middle">Tempa harimu, setiap hari.</text>
+  </g>
+</svg>

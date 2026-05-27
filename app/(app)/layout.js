@@ -77,7 +77,7 @@ export default function AppLayout({ children }) {
   );
 
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh", display: "flex" }}>
+    <div className="hf-bg-atmosphere" style={{ minHeight: "100vh", display: "flex" }}>
 
       {/* ════════════ SIDEBAR (desktop) ════════════ */}
       <aside className="sidebar lu-desktop-side flex-col fixed top-0 left-0 h-full z-20"
@@ -100,17 +100,18 @@ export default function AppLayout({ children }) {
             width: 34, height: 34, flexShrink: 0,
             background: "linear-gradient(135deg, var(--accent), var(--accent-lt))",
             borderRadius: 10, display: "flex", alignItems: "center",
-            justifyContent: "center", fontSize: 16,
+            justifyContent: "center",
             boxShadow: "var(--shadow-accent)", cursor: "pointer",
+            overflow: "hidden", padding: 4,
           }} onClick={toggleSidebar} title={collapsed ? "Expand sidebar" : "Collapse sidebar"}>
-            ⚡
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/symbol-primary.svg" alt="HF" style={{ width: 24, height: 24 }} />
           </div>
           {!collapsed && (
             <div style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
-              <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", letterSpacing: "-0.3px" }}>
-                Habit Forge
-              </div>
-              <div style={{ fontSize: 10, color: "var(--accent-lt)", fontWeight: 600 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo/habit-forge-wordmark-dark.svg" alt="Habit Forge" style={{ height: 18, display: "block" }} />
+              <div style={{ fontSize: 10, color: "var(--ember-lt)", fontWeight: 600, marginTop: 2 }}>
                 Lv.{level} · {name}
               </div>
             </div>
@@ -251,7 +252,7 @@ export default function AppLayout({ children }) {
             textAlign: "center",
           }}>
             <p style={{ fontSize: 10, color: "var(--muted)" }}>
-              © {new Date().getFullYear()} Sutanology
+              © {new Date().getFullYear()} Sutanology · Habit Forge
             </p>
           </div>
         )}
@@ -284,10 +285,15 @@ export default function AppLayout({ children }) {
           <div style={{
             width: 28, height: 28, borderRadius: 8,
             background: "linear-gradient(135deg, var(--accent), var(--accent-lt))",
-            display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13,
-          }}>⚡</div>
-          <span style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Habit Forge</span>
-          <span style={{ fontSize: 11, color: "var(--accent-lt)", fontWeight: 700 }}>Lv.{level}</span>
+            display: "flex", alignItems: "center", justifyContent: "center",
+            overflow: "hidden", padding: 3,
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/symbol-primary.svg" alt="HF" style={{ width: 20, height: 20 }} />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo/habit-forge-wordmark-dark.svg" alt="Habit Forge" style={{ height: 16 }} />
+          <span style={{ fontSize: 11, color: "var(--ember-lt)", fontWeight: 700 }}>Lv.{level}</span>
           {streak > 0 && (
             <span style={{ fontSize: 11, color: "#fb923c", fontWeight: 700 }}>🔥{streak}</span>
           )}

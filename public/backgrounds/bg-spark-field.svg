@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="r1" cx=".75" cy="0"><stop offset="0" stop-color="#6b6ddf" stop-opacity=".22"></stop><stop offset="1" stop-color="#6b6ddf" stop-opacity="0"></stop></radialGradient>
+    <radialGradient id="r2" cx=".2" cy="1"><stop offset="0" stop-color="#c9824a" stop-opacity=".14"></stop><stop offset="1" stop-color="#c9824a" stop-opacity="0"></stop></radialGradient>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="7" cy="7" r="1" fill="#ffffff" fill-opacity="0.06"></circle>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="#0b0f1a"></rect>
+  <rect width="1920" height="1080" fill="url(#r1)"></rect>
+  <rect width="1920" height="1080" fill="url(#r2)"></rect>
+  <rect width="1920" height="1080" fill="url(#dots)"></rect>
+</svg>

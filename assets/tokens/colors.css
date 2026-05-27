@@ -1,0 +1,41 @@
+/* ===========================================================
+   Habit Forge — Color Tokens
+   =========================================================== */
+:root {
+  /* Surfaces — cool desaturated navy */
+  --hf-ink-900: #0b0f1a;   /* page background */
+  --hf-ink-850: #0f1422;   /* deep surface */
+  --hf-ink-800: #141a2b;   /* surface */
+  --hf-ink-700: #1b2236;   /* card */
+  --hf-ink-600: #252e47;   /* border */
+  --hf-ink-500: #3a4565;
+  --hf-ink-300: #8893b3;   /* muted text */
+  --hf-ink-200: #b9c1d9;
+  --hf-ink-100: #e6e9f5;   /* high text */
+
+  /* Brand — primary (indigo) */
+  --hf-indigo-600: #5658c8;
+  --hf-indigo-500: #6b6ddf;  /* primary */
+  --hf-indigo-400: #8487e8;  /* hover */
+  --hf-indigo-300: #a8a9ef;  /* tint */
+
+  /* Brand — accent (ember / forge heat) */
+  --hf-ember-600:  #a8683a;
+  --hf-ember-500:  #c9824a;  /* accent */
+  --hf-ember-400:  #d99767;  /* hover */
+
+  /* Semantic */
+  --hf-success: #5fb98a;
+  --hf-warn:    #c9824a;
+  --hf-danger:  #d9646a;
+
+  /* Radii */
+  --hf-r-sm: 8px;
+  --hf-r-md: 12px;
+  --hf-r-lg: 16px;
+  --hf-r-xl: 22px;
+
+  /* Shadows */
+  --hf-shadow-card: 0 8px 24px rgba(0,0,0,.25);
+  --hf-shadow-glow: 0 0 0 1px rgba(107,109,223,.4), 0 0 24px rgba(107,109,223,.25);
+}
