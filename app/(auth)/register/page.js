@@ -82,7 +82,7 @@ export default function RegisterPage() {
             boxShadow: "0 8px 32px var(--accent-glow)",
           }}>⚡</div>
           <h1 style={{ fontWeight: 900, fontSize: 28, color: "var(--text)", letterSpacing: "-0.5px" }}>
-            LevelUp
+            Habit Forge
           </h1>
           <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
             Start your journey today.

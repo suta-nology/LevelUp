@@ -83,10 +83,10 @@ export default function LoginPage() {
             boxShadow: "0 8px 32px var(--accent-glow)",
           }}>⚡</div>
           <h1 style={{ fontWeight: 900, fontSize: 28, color: "var(--text)", letterSpacing: "-0.5px" }}>
-            LevelUp
+            Habit Forge
           </h1>
           <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
-            Level up your life, every day.
+            Forge your habits, every day.
           </p>
         </div>
 

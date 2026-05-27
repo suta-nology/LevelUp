@@ -108,7 +108,7 @@ export default function AppLayout({ children }) {
           {!collapsed && (
             <div style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
               <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", letterSpacing: "-0.3px" }}>
-                LevelUp
+                Habit Forge
               </div>
               <div style={{ fontSize: 10, color: "var(--accent-lt)", fontWeight: 600 }}>
                 Lv.{level} · {name}
@@ -286,7 +286,7 @@ export default function AppLayout({ children }) {
             background: "linear-gradient(135deg, var(--accent), var(--accent-lt))",
             display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13,
           }}>⚡</div>
-          <span style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>LevelUp</span>
+          <span style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Habit Forge</span>
           <span style={{ fontSize: 11, color: "var(--accent-lt)", fontWeight: 700 }}>Lv.{level}</span>
           {streak > 0 && (
             <span style={{ fontSize: 11, color: "#fb923c", fontWeight: 700 }}>🔥{streak}</span>

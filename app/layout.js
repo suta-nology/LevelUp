@@ -2,7 +2,7 @@ import "./globals.css";
 import Providers from "./Providers";
 
 export const metadata = {
-  title: "LevelUp — Level Up Your Life",
+  title: "Habit Forge — Forge Your Habits Daily",
   description: "Track habits, tasks, and personal growth every day.",
 };
 
