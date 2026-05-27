@@ -11,13 +11,19 @@ import XPBar from "@/components/XPBar";
 import Toast from "@/components/Toast";
 
 const NAV = [
-  { href: "/dashboard",    icon: "⚡", key: "dashboard"    },
-  { href: "/todos",        icon: "✅", key: "todos"        },
-  { href: "/habits",       icon: "🔥", key: "habits"       },
-  { href: "/calendar",     icon: "📅", key: "calendar"     },
-  { href: "/stats",        icon: "📊", key: "stats"        },
-  { href: "/achievements", icon: "🏆", key: "achievements" },
+  { href: "/dashboard",    icon: "/icons/beranda.svg",      key: "dashboard"    },
+  { href: "/todos",        icon: "/icons/daftar-tugas.svg", key: "todos"        },
+  { href: "/habits",       icon: "/icons/kebiasaan.svg",    key: "habits"       },
+  { href: "/calendar",     icon: "/icons/kalender.svg",     key: "calendar"     },
+  { href: "/stats",        icon: "/icons/statistik.svg",    key: "stats"        },
+  { href: "/achievements", icon: "/icons/pencapaian.svg",   key: "achievements" },
 ];
+
+/* CSS filter to color SVG icons (stroke="currentColor" on transparent bg) */
+const F_MUTED  = "invert(57%) sepia(14%) saturate(520%) hue-rotate(192deg) opacity(0.75)";
+const F_ACTIVE = "invert(46%) sepia(55%) saturate(560%) hue-rotate(204deg) brightness(108%)";
+const F_DANGER = "invert(48%) sepia(68%) saturate(600%) hue-rotate(318deg) brightness(108%)";
+const F_EMBER  = "invert(60%) sepia(52%) saturate(560%) hue-rotate(12deg) brightness(105%)";
 
 const SIDEBAR_FULL = 220;
 const SIDEBAR_MINI = 64;
@@ -141,9 +147,10 @@ export default function AppLayout({ children }) {
             justifyContent: collapsed ? "center" : "flex-start",
             gap: 6,
           }}>
-            <span style={{ fontSize: 14 }}>🔥</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icons/streak.svg" alt="" style={{ width: 16, height: 16, filter: F_EMBER }} />
             {!collapsed && (
-              <span style={{ fontSize: 11, fontWeight: 700, color: "#fb923c", whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: "var(--ember)", whiteSpace: "nowrap" }}>
                 {streak} {t("streak")}
               </span>
             )}
@@ -177,9 +184,12 @@ export default function AppLayout({ children }) {
                     }}
                     onMouseOver={e => { if (!active) { e.currentTarget.style.background = "var(--hover)"; e.currentTarget.style.color = "var(--text-soft)"; }}}
                     onMouseOut={e => { if (!active) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--muted)"; }}}>
-                <span style={{ fontSize: 17, flexShrink: 0, lineHeight: 1, width: collapsed ? "auto" : 20, textAlign: "center" }}>
-                  {icon}
-                </span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={icon} alt="" style={{
+                  width: 18, height: 18, flexShrink: 0,
+                  filter: active ? F_ACTIVE : F_MUTED,
+                  transition: "filter 0.2s",
+                }} />
                 {!collapsed && (
                   <>
                     <span style={{ flex: 1 }}>{t(key)}</span>
@@ -222,7 +232,8 @@ export default function AppLayout({ children }) {
                   }}
                   onMouseOver={e => { e.currentTarget.style.background = "var(--hover)"; e.currentTarget.style.color = "var(--text-soft)"; }}
                   onMouseOut={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = "var(--muted)"; }}>
-            <span style={{ fontSize: 17 }}>⚙️</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icons/pengaturan.svg" alt="" style={{ width: 18, height: 18, filter: F_MUTED }} />
             {!collapsed && <span>{t("settings")}</span>}
           </button>
 
@@ -239,7 +250,8 @@ export default function AppLayout({ children }) {
                   }}
                   onMouseOver={e => { e.currentTarget.style.background = "rgba(248,113,113,0.08)"; }}
                   onMouseOut={e => { e.currentTarget.style.background = "none"; }}>
-            <span style={{ fontSize: 17 }}>🚪</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icons/keluar.svg" alt="" style={{ width: 18, height: 18, filter: F_DANGER }} />
             {!collapsed && <span>{t("signOut")}</span>}
           </button>
         </div>
@@ -295,15 +307,20 @@ export default function AppLayout({ children }) {
           <img src="/logo/habit-forge-wordmark-dark.svg" alt="Habit Forge" style={{ height: 16 }} />
           <span style={{ fontSize: 11, color: "var(--ember-lt)", fontWeight: 700 }}>Lv.{level}</span>
           {streak > 0 && (
-            <span style={{ fontSize: 11, color: "#fb923c", fontWeight: 700 }}>🔥{streak}</span>
+            <span style={{ fontSize: 11, color: "var(--ember)", fontWeight: 700, display: "flex", alignItems: "center", gap: 2 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/icons/streak.svg" alt="" style={{ width: 12, height: 12, filter: F_EMBER }} />
+              {streak}
+            </span>
           )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 80 }}><XPBar compact /></div>
           <button onClick={() => setSettingsOpen(true)}
-                  style={{ color: "var(--muted)", fontSize: 18, padding: "4px",
-                           background: "none", border: "none", cursor: "pointer" }}>
-            ⚙️
+                  style={{ color: "var(--muted)", padding: "4px",
+                           background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icons/pengaturan.svg" alt="Settings" style={{ width: 20, height: 20, filter: F_MUTED }} />
           </button>
         </div>
       </div>
@@ -326,7 +343,8 @@ export default function AppLayout({ children }) {
                     fontSize: 9.5, transition: "all 0.2s",
                     whiteSpace: "nowrap",
                   }}>
-              <span style={{ fontSize: 19 }}>{icon}</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={icon} alt="" style={{ width: 20, height: 20, filter: active ? F_ACTIVE : F_MUTED, transition: "filter 0.2s" }} />
               <span>{t(key)}</span>
             </Link>
           );

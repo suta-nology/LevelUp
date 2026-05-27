@@ -1,6 +1,20 @@
 "use client";
+import Image from "next/image";
 import { useApp } from "@/context/AppContext";
 import { ACHIEVEMENTS } from "@/lib/gameSystem";
+
+const BADGE_MAP = {
+  first_task:  "apprentice",
+  tasks_10:    "striker",
+  tasks_50:    "forgemaster",
+  streak_3:    "apprentice",
+  streak_7:    "striker",
+  streak_30:   "forgemaster",
+  perfect_day: "smith",
+  level_5:     "striker",
+  level_10:    "forgemaster",
+  habit_week:  "smith",
+};
 
 export default function AchievementsPage() {
   const { t, unlocked } = useApp();
@@ -11,8 +25,9 @@ export default function AchievementsPage() {
     <div className="page-pad">
 
       <div className="mb-6 anim-fade-up">
-        <h1 style={{ fontWeight: 900, fontSize: 26, color: "var(--text)", letterSpacing: "-0.4px" }}>
-          🏆 {t("achievements")}
+        <h1 style={{ fontWeight: 900, fontSize: 26, color: "var(--text)", letterSpacing: "-0.4px", display: "flex", alignItems: "center", gap: 10 }}>
+          <Image src="/badges/forgemaster.svg" alt="" width={28} height={32} style={{ opacity: 0.85 }} />
+          {t("achievements")}
         </h1>
         <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
           {unlocked.length} / {ACHIEVEMENTS.length} unlocked
@@ -43,21 +58,21 @@ export default function AchievementsPage() {
                  style={{
                    animationDelay: `${i * 0.04}s`,
                    opacity: done ? 1 : 0.5,
-                   borderColor: done ? "rgba(251,191,36,0.25)" : "var(--border)",
+                   borderColor: done ? "rgba(107,109,223,0.3)" : "var(--border)",
                  }}>
-              <div style={{
-                width: 48, height: 48, borderRadius: 14, flexShrink: 0,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 22,
-                background: done ? "rgba(251,191,36,0.15)" : "var(--hover)",
-                border: `1px solid ${done ? "rgba(251,191,36,0.25)" : "var(--border)"}`,
-              }}>
-                {done ? a.icon : "🔒"}
+              <div style={{ flexShrink: 0, width: 54, display: "flex", justifyContent: "center" }}>
+                <Image
+                  src={`/badges/${BADGE_MAP[a.id] ?? "apprentice"}.svg`}
+                  alt=""
+                  width={44}
+                  height={50}
+                  style={{ opacity: done ? 1 : 0.18 }}
+                />
               </div>
               <div>
                 <p style={{
                   fontWeight: 700, fontSize: 13,
-                  color: done ? "#fbbf24" : "var(--muted)",
+                  color: done ? "var(--text)" : "var(--muted)",
                 }}>
                   {t(a.nameKey)}
                 </p>
