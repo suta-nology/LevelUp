@@ -1,7 +1,12 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useApp } from "@/context/AppContext";
 import { XP } from "@/lib/gameSystem";
+
+const F_MUTED  = "invert(57%) sepia(14%) saturate(520%) hue-rotate(192deg) opacity(0.75)";
+const F_DANGER = "invert(48%) sepia(68%) saturate(600%) hue-rotate(318deg) brightness(108%)";
+const F_WHITE  = "brightness(0) invert(1)";
 
 function uid() {
   return typeof window !== "undefined" ? (localStorage.getItem("lu_user") || "guest") : "guest";
@@ -57,7 +62,7 @@ export default function TodosPage() {
           {t("todos")}
         </h1>
         <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
-          {tasks.length === 0 ? t("emptyTaskSub") : `${doneCount} / ${tasks.length} completed`}
+          {tasks.length === 0 ? t("emptyTaskSub") : `${doneCount} / ${tasks.length} ${t("done").toLowerCase()}`}
         </p>
       </div>
 
@@ -74,7 +79,9 @@ export default function TodosPage() {
                value={input}
                onChange={e => setInput(e.target.value)}
                onKeyDown={e => e.key === "Enter" && addTask()} />
-        <button onClick={addTask} className="btn-primary" style={{ flexShrink: 0 }}>
+        <button onClick={addTask} className="btn-primary"
+                style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 6 }}>
+          <Image src="/icons/tambah.svg" alt="" width={14} height={14} style={{ filter: F_WHITE }} />
           {t("add")}
         </button>
       </div>
@@ -95,7 +102,9 @@ export default function TodosPage() {
       <div className="space-y-2 stagger">
         {tasks.length === 0 && (
           <div className="anim-fade-up text-center py-16">
-            <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
+            <div style={{ marginBottom: 12, opacity: 0.35 }}>
+              <Image src="/icons/centang.svg" alt="" width={48} height={48} style={{ filter: F_MUTED }} />
+            </div>
             <p style={{ fontWeight: 600, color: "var(--text-soft)" }}>{t("emptyTaskTitle")}</p>
             <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 6 }}>{t("emptyTaskSub")}</p>
           </div>
@@ -125,7 +134,7 @@ export default function TodosPage() {
                       flexShrink: 0, cursor: "pointer",
                       transition: "all 0.2s cubic-bezier(0.34,1.56,0.64,1)",
                     }}>
-              {task.done && "✓"}
+              {task.done && <Image src="/icons/centang.svg" alt="" width={11} height={11} style={{ filter: F_WHITE }} />}
             </button>
 
             {/* Text */}
@@ -141,15 +150,12 @@ export default function TodosPage() {
 
             {/* Delete */}
             <button onClick={() => deleteTask(task.id)}
-                    style={{
-                      color: "var(--muted)", fontSize: 18, lineHeight: 1,
-                      background: "none", border: "none", cursor: "pointer",
-                      padding: "2px 4px", borderRadius: 6,
-                      transition: "color 0.15s",
-                    }}
-                    onMouseOver={e => e.currentTarget.style.color = "var(--danger)"}
-                    onMouseOut={e => e.currentTarget.style.color = "var(--muted)"}>
-              ×
+                    style={{ background: "none", border: "none", cursor: "pointer",
+                             padding: "4px", borderRadius: 6, display: "flex", alignItems: "center" }}
+                    onMouseOver={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.filter = F_DANGER; }}
+                    onMouseOut={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.filter = F_MUTED; }}>
+              <Image src="/icons/hapus.svg" alt="" width={16} height={16}
+                     style={{ filter: F_MUTED, transition: "filter 0.15s", display: "block" }} />
             </button>
           </div>
         ))}

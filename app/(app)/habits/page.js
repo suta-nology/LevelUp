@@ -1,18 +1,20 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useApp } from "@/context/AppContext";
 import { calcStreak, XP } from "@/lib/gameSystem";
 
-const HABITS = [
-  { id: "gym",    icon: "🏋️", label: "Gym / Workout", bg: "linear-gradient(135deg,#ea580c,#dc2626)" },
-  { id: "study",  icon: "📚", label: "Belajar",        bg: "linear-gradient(135deg,#2563eb,#4f46e5)" },
-  { id: "water",  icon: "💧", label: "Minum Air (8x)", bg: "linear-gradient(135deg,#0891b2,#2563eb)" },
-  { id: "coding", icon: "💻", label: "Coding",         bg: "linear-gradient(135deg,#7c3aed,#a21caf)" },
-  { id: "read",   icon: "📖", label: "Membaca",        bg: "linear-gradient(135deg,#059669,#0d9488)" },
-  { id: "sleep",  icon: "😴", label: "Tidur Cukup",    bg: "linear-gradient(135deg,#4338ca,#1d4ed8)" },
-];
+const LOCALE_MAP = { en:"en-US", id:"id-ID", jp:"ja-JP", ko:"ko-KR", zh:"zh-CN", fr:"fr-FR", de:"de-DE" };
+const F_WHITE = "brightness(0) invert(1)";
 
-const DOW = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const HABITS = [
+  { id: "gym",    icon: "🏋️", labelKey: "habitGym",    bg: "linear-gradient(135deg,#ea580c,#dc2626)" },
+  { id: "study",  icon: "📚", labelKey: "habitStudy",  bg: "linear-gradient(135deg,#2563eb,#4f46e5)" },
+  { id: "water",  icon: "💧", labelKey: "habitWater",  bg: "linear-gradient(135deg,#0891b2,#2563eb)" },
+  { id: "coding", icon: "💻", labelKey: "habitCoding", bg: "linear-gradient(135deg,#7c3aed,#a21caf)" },
+  { id: "read",   icon: "📖", labelKey: "habitRead",   bg: "linear-gradient(135deg,#059669,#0d9488)" },
+  { id: "sleep",  icon: "😴", labelKey: "habitSleep",  bg: "linear-gradient(135deg,#4338ca,#1d4ed8)" },
+];
 
 function getLast7Days() {
   return Array.from({ length: 7 }, (_, i) => {
@@ -26,9 +28,10 @@ function getUID() {
 }
 
 export default function HabitsPage() {
-  const { t, addXP, checkAchievements } = useApp();
-  const days  = getLast7Days();
-  const today = new Date().toISOString().slice(0, 10);
+  const { t, lang, addXP, checkAchievements } = useApp();
+  const days   = getLast7Days();
+  const today  = new Date().toISOString().slice(0, 10);
+  const locale = LOCALE_MAP[lang] || "en-US";
 
   const [checked, setChecked] = useState({});
 
@@ -118,11 +121,11 @@ export default function HabitsPage() {
               <tr style={{ borderBottom: "1px solid var(--border)" }}>
                 <th style={{ padding: "12px 16px", textAlign: "left", fontSize: 11,
                              fontWeight: 700, color: "var(--muted)", width: 160 }}>
-                  Habit
+                  {t("habitCol")}
                 </th>
                 {days.map(d => {
                   const isToday = d === today;
-                  const dow = DOW[(new Date(d + "T00:00:00").getDay() + 6) % 7];
+                  const dow = new Intl.DateTimeFormat(locale, { weekday: "short" }).format(new Date(d + "T00:00:00"));
                   return (
                     <th key={d} style={{ padding: "10px 6px", textAlign: "center",
                                         fontSize: 10, fontWeight: 700,
@@ -143,7 +146,7 @@ export default function HabitsPage() {
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <span style={{ fontSize: 18 }}>{habit.icon}</span>
                       <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-soft)" }}>
-                        {habit.label}
+                        {t(habit.labelKey)}
                       </span>
                     </div>
                   </td>
@@ -169,7 +172,7 @@ export default function HabitsPage() {
                             transform: done ? "scale(1.05)" : "scale(1)",
                             boxShadow: done ? "0 3px 10px rgba(0,0,0,0.2)" : "none",
                           }}>
-                          {done ? "✓" : ""}
+                          {done && <Image src="/icons/centang.svg" alt="" width={14} height={14} style={{ filter: F_WHITE }} />}
                         </button>
                       </td>
                     );
